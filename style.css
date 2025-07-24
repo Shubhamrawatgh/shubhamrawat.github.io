@@ -147,6 +147,98 @@ a:hover {
     font-size: 1rem;
 }
 
+/* ==== PROJECTS SECTION ==== */
+.projects-section {
+    padding: 4rem 0;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px var(--accent-glow);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.project-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allows footer links to stick to the bottom */
+}
+
+.project-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.project-content p {
+    color: var(--secondary-text-color);
+    flex-grow: 1; /* Pushes links to the bottom */
+    margin-bottom: 1rem;
+}
+
+.project-tags {
+    margin-bottom: 1.5rem;
+}
+
+.project-tags span {
+    background-color: rgba(0, 170, 255, 0.1);
+    color: var(--accent-color);
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-right: 0.5rem;
+    display: inline-block;
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.link-btn {
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    display: inline-block;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.link-btn:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.link-btn i {
+    margin-right: 0.5rem;
+}
+
 /* ==== CONTACT SECTION ==== */
 .contact-section {
     padding: 4rem 0;
