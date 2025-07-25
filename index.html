@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shubham Rawat</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome for social icons (used in footer) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
-    <!-- Canvas for particle background animation -->
     <canvas id="particle-canvas"></canvas>
 
     <div class="container">
-        <!-- ==== HEADER / HERO SECTION ==== -->
         <header class="hero">
             <div class="hero-content fade-in-section">
                 <h1>Hi, I'm Shubham Rawat</h1>
@@ -23,11 +20,9 @@
         </header>
 
         <main>
-            <!-- ==== SKILLS SECTION ==== -->
             <section id="skills" class="skills-section fade-in-section">
                 <h2>My Skills</h2>
                 <div class="skills-grid">
-                    <!-- Skill Card 1: Full Stack Development -->
                     <div class="skill-tile">
                         <i class="fas fa-code"></i>
                         <h3>Full Stack Development</h3>
@@ -38,9 +33,11 @@
                             <img src="assets/icons/javascript.svg" alt="JavaScript Logo" class="tech-logo" title="JavaScript">
                             <img src="assets/icons/python.svg" alt="Python Logo" class="tech-logo" title="Python">
                         </div>
+                        <div class="project-link-wrapper">
+                            <a href="development_projects.html" class="skill-project-btn">View Projects</a>
+                        </div>
                     </div>
 
-                    <!-- Skill Card 2: Creative Media & Design -->
                     <div class="skill-tile">
                         <i class="fas fa-palette"></i>
                         <h3>Creative Media & Design</h3>
@@ -50,9 +47,11 @@
                             <img src="assets/icons/aftereffects.svg" alt="After Effects Logo" class="tech-logo" title="Adobe After Effects">
                             <img src="assets/icons/photoshop.svg" alt="Photoshop Logo" class="tech-logo" title="Adobe Photoshop">
                         </div>
+                         <div class="project-link-wrapper">
+                            <a href="creative_projects.html" class="skill-project-btn">View Projects</a>
+                        </div>
                     </div>
 
-                    <!-- Skill Card 3: AI & Generative Content -->
                     <div class="skill-tile">
                         <i class="fas fa-brain"></i>
                         <h3>AI & Generative Content</h3>
@@ -62,11 +61,13 @@
                             <img src="assets/icons/gemini.svg" alt="Google Gemini Logo" class="tech-logo" title="Google Gemini">
                             <img src="assets/icons/Huggingface.svg" alt="Hugging Face Logo" class="tech-logo" title="Hugging Face">
                         </div>
+                         <div class="project-link-wrapper">
+                            <a href="ai_projects.html" class="skill-project-btn">View Projects</a>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- ==== MY WORK / PROJECTS SECTION ==== -->
             <section id="projects" class="projects-section fade-in-section">
                 <h2>My Work</h2>
                 <div class="projects-grid">
@@ -104,7 +105,6 @@
                 </div>
             </section>
 
-            <!-- ==== CONTACT SECTION ==== -->
             <section id="contact" class="contact-section fade-in-section">
                 <h2>Get In Touch</h2>
                 <form id="contact-form" class="contact-form">
@@ -122,7 +122,6 @@
             </section>
         </main>
 
-        <!-- ==== FOOTER SECTION ==== -->
         <footer class="fade-in-section">
             <div class="social-links">
                 <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -134,7 +133,6 @@
         </footer>
     </div>
 
-    <!-- JavaScript File -->
     <script src="script.js"></script>
 </body>
 </html>
