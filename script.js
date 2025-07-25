@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let particlesArray;
 
+    // Particle class
     class Particle {
         constructor(x, y, directionX, directionY, size, color) {
             this.x = x;
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.color = color;
         }
 
+        // Method to draw individual particle
         draw() {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
@@ -25,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.fill();
         }
 
+        // Method to update particle's position
         update() {
             if (this.x > canvas.width || this.x < 0) {
                 this.directionX = -this.directionX;
@@ -38,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Function to create particles
     function init() {
         particlesArray = [];
         let numberOfParticles = (canvas.height * canvas.width) / 9000;
@@ -52,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Animation loop
     function animate() {
         requestAnimationFrame(animate);
         ctx.clearRect(0, 0, innerWidth, innerHeight);
@@ -62,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         connect();
     }
 
+    // Function to draw lines between particles
     function connect() {
         let opacityValue = 1;
         for (let a = 0; a < particlesArray.length; a++) {
@@ -80,7 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-
+    
+    // Resize event listener
     window.addEventListener('resize', () => {
         canvas.width = innerWidth;
         canvas.height = innerHeight;
@@ -128,7 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
-        // If validation passes
         alert('Thank you for your message! I will get back to you soon.');
         contactForm.reset();
     });
