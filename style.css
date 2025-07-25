@@ -147,11 +147,12 @@ a:hover {
 .skill-tile p {
     color: var(--secondary-text-color);
     font-size: 1rem;
+    flex-grow: 1; /* Allows button to be at bottom */
 }
 
 .tech-icons {
-    margin-top: auto; /* This pushes the element to the bottom */
-    padding-top: 1.5rem; /* This keeps the space above the icons */
+    margin-top: 1.5rem;
+    padding-bottom: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -160,23 +161,86 @@ a:hover {
 }
 
 .tech-logo {
-    height: 35px; /* Set a fixed height */
-    width: 35px;  /* Set a fixed width for consistency */
-    object-fit: contain; /* Ensure the logo fits within the box without distortion */
+    height: 35px;
+    width: 35px;
+    object-fit: contain;
     transition: opacity 0.3s ease, transform 0.3s ease;
-    opacity: 0.85; /* Slightly increase opacity for better visibility */
+    opacity: 0.85;
 }
 
 .tech-logo:hover {
     opacity: 1;
-    transform: scale(1.15); /* Make hover effect a bit more pronounced */
+    transform: scale(1.15);
 }
 
+.project-link-wrapper {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+}
 
-/* ==== PROJECTS SECTION ==== */
-.projects-section {
+.skill-project-btn {
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    display: inline-block;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.skill-project-btn:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* ==== PROJECTS SECTION & NEW PROJECT PAGES ==== */
+.projects-section, .projects-page {
     padding: 4rem 0;
 }
+
+.projects-page-header {
+    text-align: center;
+    padding: 4rem 0 2rem 0;
+}
+
+.projects-page-header i {
+    font-size: 3.5rem;
+    color: var(--accent-color);
+    text-shadow: 0 0 15px var(--accent-glow);
+    margin-bottom: 1.5rem;
+}
+
+.projects-page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.back-to-home {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s ease;
+}
+
+.back-to-home:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.back-to-home i {
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
 
 .projects-grid {
     display: grid;
@@ -243,6 +307,7 @@ a:hover {
 .project-links {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .link-btn {
@@ -362,5 +427,8 @@ footer p {
     }
     .container {
         padding: 0 1rem;
+    }
+    .projects-page-header h1 {
+       font-size: 2.5rem;
     }
 }
