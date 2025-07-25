@@ -26,12 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
     applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
 
 
-    // ==== INTERACTIVE PARTICLE BACKGROUND ====
+    // ==== INTERACTIVE PARTICLE BACKGROUND (FIXED & OPTIMIZED) ====
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
     
     let particlesArray;
-    const mouse = { x: null, y: null, radius: 150 };
+    const mouse = { x: null, y: null, radius: 100 };
 
     window.addEventListener('mousemove', (event) => {
         mouse.x = event.x;
@@ -43,29 +43,108 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     class Particle {
-        // ... (Particle class methods)
+        constructor(x, y, directionX, directionY, size, color) {
+            this.x = x;
+            this.y = y;
+            this.directionX = directionX;
+            this.directionY = directionY;
+            this.size = size;
+            this.color = color;
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
+
+        update() {
+            if (this.x > canvas.width || this.x < 0) {
+                this.directionX = -this.directionX;
+            }
+            if (this.y > canvas.height || this.y < 0) {
+                this.directionY = -this.directionY;
+            }
+
+            // --- Mouse Interaction ---
+            let dx = mouse.x - this.x;
+            let dy = mouse.y - this.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < mouse.radius + this.size) {
+                if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
+                    this.x += 5;
+                }
+                if (mouse.x > this.x && this.x > this.size * 10) {
+                    this.x -= 5;
+                }
+                if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
+                    this.y += 5;
+                }
+                if (mouse.y > this.y && this.y > this.size * 10) {
+                    this.y -= 5;
+                }
+            }
+
+            this.x += this.directionX;
+            this.y += this.directionY;
+            this.draw();
+        }
     }
 
     const particleAnimation = {
         init() {
-            // ... (init implementation)
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particlesArray = [];
+            const theme = document.body.dataset.theme || 'dark';
+            const particleColor = getComputedStyle(document.documentElement).getPropertyValue('--particle-color').trim().replace(/"/g, '');
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2.5) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * .4) - .2;
+                let directionY = (Math.random() * .4) - .2;
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, particleColor));
+            }
         },
         animate() {
-            // ... (animate implementation)
+            requestAnimationFrame(this.animate.bind(this));
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+            this.connect();
         },
         connect() {
-            // ... (connect implementation with mouse interaction)
+            let opacityValue = 1;
+            const linkColor = getComputedStyle(document.documentElement).getPropertyValue('--particle-link-color').trim().replace(/"/g, '');
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
+                        ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+                        opacityValue = 1 - (distance / 20000);
+                        ctx.strokeStyle = linkColor.replace(/,\s*\d?\.?\d*\)/, `, ${opacityValue})`);
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
         },
         updateTheme() {
-            // Function to update colors when theme changes
             if (particlesArray) {
-                const theme = document.body.dataset.theme || 'dark';
                 const particleColor = getComputedStyle(document.documentElement).getPropertyValue('--particle-color').trim().replace(/"/g, '');
                 particlesArray.forEach(p => p.color = particleColor);
             }
         },
         handleResize() {
-            // ... (resize implementation)
+            this.init();
         }
     };
     
@@ -73,13 +152,21 @@ document.addEventListener('DOMContentLoaded', () => {
     window.particleAnimation = particleAnimation;
     particleAnimation.init();
     particleAnimation.animate();
-    window.addEventListener('resize', () => particleAnimation.handleResize());
+
+    // Debounce resize handler for performance
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            particleAnimation.handleResize();
+        }, 250);
+    });
 
 
     // ==== TYPEWRITER EFFECT ====
-    const typeWriter = (element, text, speed = 100) => {
+    const typeWriter = (element, text, speed = 100, callback = () => {}) => {
         let i = 0;
-        element.innerHTML = `<span class="cursor"></span>`; // Start with just a cursor
+        element.innerHTML = `<span class="cursor"></span>`;
         const typing = () => {
             if (i < text.length) {
                 element.innerHTML = text.substring(0, i + 1) + `<span class="cursor"></span>`;
@@ -87,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(typing, speed);
             } else {
                 element.querySelector('.cursor').style.animation = 'blink 1s infinite';
+                callback();
             }
         };
         typing();
@@ -94,20 +182,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const headline = document.getElementById('hero-headline');
     const tagline = document.getElementById('hero-tagline');
+    const heroCTA = document.querySelector('.hero-cta');
     const headlineText = "Hi, I'm Shubham Rawat.";
     const taglineText = "A passionate Full Stack Developer and Creative Professional.";
 
     setTimeout(() => {
-        typeWriter(headline, headlineText, 80);
-    }, 1000); // Start after hero fade-in
+        typeWriter(headline, headlineText, 80, () => {
+            // After headline finishes, type tagline
+            setTimeout(() => {
+                typeWriter(tagline, taglineText, 50, () => {
+                    // After tagline finishes, show buttons
+                    heroCTA.style.opacity = 1;
+                    heroCTA.style.transform = 'translateY(0)';
+                });
+            }, 300);
+        });
+    }, 1000);
 
-    setTimeout(() => {
-        tagline.style.opacity = 1;
-        typeWriter(tagline, taglineText, 50);
-    }, 1000 + (headlineText.length * 80) + 300); // Start after headline finishes
 
-
-    // ==== FADE-IN SCROLL ANIMATION (Unchanged) ====
+    // ==== FADE-IN SCROLL ANIMATION ====
     const sections = document.querySelectorAll('.fade-in-section');
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -120,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => observer.observe(section));
 
 
-    // ==== CONTACT FORM VALIDATION (Unchanged) ====
+    // ==== CONTACT FORM VALIDATION ====
     const contactForm = document.getElementById('contact-form');
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
