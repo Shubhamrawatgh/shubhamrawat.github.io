@@ -1,6 +1,4 @@
-/* ==== THEME VARIABLES & CUSTOMIZATION ====
-/* To customize your site's colors, change the color values in the :root (light theme)
-/* and [data-theme="dark"] (dark theme) selectors. */
+/* ==== THEME VARIABLES & CUSTOMIZATION ==== */
 :root {
     --bg-color: #f4f7f9;
     --nav-bg-color: rgba(255, 255, 255, 0.75);
@@ -183,6 +181,7 @@ a:hover {
     font-weight: 700;
     margin-bottom: 1rem;
     color: var(--heading-color);
+    min-height: clamp(2.8rem, 7vw, 5rem); /* Prevents layout shift */
 }
 
 #hero-headline .cursor {
@@ -190,7 +189,7 @@ a:hover {
     width: 3px;
     height: clamp(2.5rem, 6vw, 4.5rem);
     background-color: var(--accent-color);
-    animation: blink 1s infinite;
+    animation: blink 0.8s infinite;
 }
 
 #hero-tagline {
@@ -198,6 +197,7 @@ a:hover {
     color: var(--secondary-text-color);
     font-weight: 300;
     margin-bottom: 2.5rem;
+    min-height: clamp(1.5rem, 4vw, 2rem); /* Prevents layout shift */
 }
 
 @keyframes blink {
@@ -210,6 +210,9 @@ a:hover {
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+    opacity: 0; /* Hidden initially */
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .cta-btn {
@@ -250,6 +253,9 @@ a:hover {
     left: 50%;
     transform: translateX(-50%);
     animation: bounce 2s infinite;
+    opacity: 0;
+    animation-delay: 4s; /* Delay to appear after text animation */
+    animation-fill-mode: forwards;
 }
 .scroll-down-indicator .arrow {
     width: 20px;
@@ -271,9 +277,23 @@ a:hover {
     }
 }
 
-/* ==== OTHER SECTIONS (Unchanged from original) ==== */
-/* Styles for .skills-section, .projects-section, .contact-section, footer, etc. remain the same */
-/* Adding some minor adjustments for theme compatibility */
+/* Fade in for scroll indicator */
+[data-theme="dark"] .scroll-down-indicator,
+[data-theme="light"] .scroll-down-indicator {
+    animation: bounce 2s infinite, fadeIn 1s ease-out 4s forwards;
+}
+
+
+/* ==== OTHER SECTIONS STYLES ==== */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 .skill-tile, .project-card, .contact-form {
     background: var(--glass-bg);
