@@ -1,13 +1,21 @@
-/* Add this to your existing CSS file */
+/* ==== NAVIGATION HEADER ==== */
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 10, 16, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+    z-index: 1000;
+    padding: 1rem 0;
+}
 
-/* ==== HAMBURGER MENU ==== */
-.hamburger {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--primary-text-color);
-    font-size: 1.5rem;
-    cursor: pointer;
+.nav-container {
+    display: flex;
+    justify-content: space-between; /* Changed from center to space-between */
+    align-items: center;
 }
 
 .logo a {
@@ -17,20 +25,64 @@
     text-decoration: none;
 }
 
+.nav-links {
+    display: flex; /* This makes the links appear horizontally on desktop */
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.nav-link {
+    color: var(--primary-text-color);
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent-color);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hide the hamburger on desktop by default */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--primary-text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
 /* ==== RESPONSIVE DESIGN ==== */
 @media (max-width: 768px) {
-    .nav-container {
-        justify-content: space-between;
-    }
-
+    /* Show the hamburger icon on mobile */
     .hamburger {
         display: block;
     }
 
+    /* Hide the navigation links container on mobile */
     .nav-links {
         display: none;
         position: absolute;
-        top: 100%;
+        top: 100%; /* Position below the navbar */
         left: 0;
         width: 100%;
         background-color: rgba(10, 10, 16, 0.95);
@@ -40,12 +92,13 @@
         border-top: 1px solid var(--glass-border);
     }
 
+    /* This class is toggled by JavaScript to show the menu */
     .nav-links.active {
         display: flex;
     }
 
     .nav-link {
-        padding: 1rem 0;
+        padding: 1rem;
     }
     
     h1 {
