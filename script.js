@@ -1,13 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ==== HAMBURGER MENU TOGGLE ====
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
-
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
-
     // ==== PARTICLE BACKGROUND ANIMATION ====
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
