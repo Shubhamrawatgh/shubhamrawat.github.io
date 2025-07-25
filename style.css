@@ -454,11 +454,24 @@ footer {
     margin: 0 1rem;
     color: var(--secondary-text-color);
     transition: color 0.3s ease, text-shadow 0.3s ease;
+    display: inline-flex;
+    align-items: center;
 }
 
 .social-links a:hover {
     color: var(--accent-color);
     text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.social-icon-svg {
+    height: 1.8rem; /* Match the font-size of other icons */
+    width: 1.8rem;  /* Match the font-size of other icons */
+    fill: currentColor;
+    transition: filter 0.3s ease;
+}
+
+.social-links a:hover .social-icon-svg {
+    filter: drop-shadow(0 0 8px var(--accent-glow));
 }
 
 footer p {
