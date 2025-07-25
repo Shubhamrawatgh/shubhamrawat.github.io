@@ -338,3 +338,23 @@ footer p {
         padding: 0 1rem;
     }
 }
+/* ==== Tech Icons in Skill Tiles ==== */
+.tech-icons {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.tech-icons i {
+    font-size: 2rem;
+    color: var(--secondary-text-color);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.tech-icons i:hover {
+    color: var(--accent-color);
+    transform: scale(1.1);
+}
