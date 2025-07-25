@@ -122,15 +122,17 @@ a:hover {
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
 }
 
 .skill-tile {
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
-.skill-tile i {
+.skill-tile > i { /* Main icon at the top */
     font-size: 3rem;
     color: var(--accent-color);
     margin-bottom: 1rem;
@@ -145,7 +147,32 @@ a:hover {
 .skill-tile p {
     color: var(--secondary-text-color);
     font-size: 1rem;
+    flex-grow: 1; /* Pushes icons to the bottom */
 }
+
+.tech-icons {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.tech-logo {
+    height: 35px;
+    width: auto;
+    /* This filter makes black SVGs visible and white. Remove if your SVGs are already white. */
+    filter: invert(1); 
+    opacity: 0.7;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.tech-logo:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
 
 /* ==== PROJECTS SECTION ==== */
 .projects-section {
@@ -184,7 +211,7 @@ a:hover {
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Allows footer links to stick to the bottom */
+    flex-grow: 1;
 }
 
 .project-content h3 {
@@ -195,7 +222,7 @@ a:hover {
 
 .project-content p {
     color: var(--secondary-text-color);
-    flex-grow: 1; /* Pushes links to the bottom */
+    flex-grow: 1;
     margin-bottom: 1rem;
 }
 
@@ -337,24 +364,4 @@ footer p {
     .container {
         padding: 0 1rem;
     }
-}
-/* ==== Tech Icons in Skill Tiles ==== */
-.tech-icons {
-    margin-top: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-}
-
-.tech-icons i {
-    font-size: 2rem;
-    color: var(--secondary-text-color);
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.tech-icons i:hover {
-    color: var(--accent-color);
-    transform: scale(1.1);
 }
