@@ -147,11 +147,11 @@ a:hover {
 .skill-tile p {
     color: var(--secondary-text-color);
     font-size: 1rem;
-    flex-grow: 1; /* Pushes icons to the bottom */
 }
 
 .tech-icons {
-    margin-top: 1.5rem;
+    margin-top: auto; /* This pushes the element to the bottom */
+    padding-top: 1.5rem; /* This keeps the space above the icons */
     display: flex;
     justify-content: center;
     align-items: center;
