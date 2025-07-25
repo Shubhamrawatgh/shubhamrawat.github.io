@@ -160,17 +160,16 @@ a:hover {
 }
 
 .tech-logo {
-    height: 35px;
-    width: auto;
-    /* This filter makes black SVGs visible and white. Remove if your SVGs are already white. */
-    filter: invert(1); 
-    opacity: 0.7;
+    height: 35px; /* Set a fixed height */
+    width: 35px;  /* Set a fixed width for consistency */
+    object-fit: contain; /* Ensure the logo fits within the box without distortion */
     transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0.85; /* Slightly increase opacity for better visibility */
 }
 
 .tech-logo:hover {
     opacity: 1;
-    transform: scale(1.1);
+    transform: scale(1.15); /* Make hover effect a bit more pronounced */
 }
 
 
