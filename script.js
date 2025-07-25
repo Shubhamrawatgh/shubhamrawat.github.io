@@ -26,21 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
     applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
 
 
-    // ==== INTERACTIVE PARTICLE BACKGROUND (FIXED & OPTIMIZED) ====
+    // ==== PARTICLE BACKGROUND (INTERACTIVITY REMOVED) ====
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
     
     let particlesArray;
-    const mouse = { x: null, y: null, radius: 100 };
-
-    window.addEventListener('mousemove', (event) => {
-        mouse.x = event.x;
-        mouse.y = event.y;
-    });
-    window.addEventListener('mouseout', () => {
-        mouse.x = null;
-        mouse.y = null;
-    });
 
     class Particle {
         constructor(x, y, directionX, directionY, size, color) {
@@ -66,26 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.y > canvas.height || this.y < 0) {
                 this.directionY = -this.directionY;
             }
-
-            // --- Mouse Interaction ---
-            let dx = mouse.x - this.x;
-            let dy = mouse.y - this.y;
-            let distance = Math.sqrt(dx * dx + dy * dy);
-            if (distance < mouse.radius + this.size) {
-                if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
-                    this.x += 5;
-                }
-                if (mouse.x > this.x && this.x > this.size * 10) {
-                    this.x -= 5;
-                }
-                if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
-                    this.y += 5;
-                }
-                if (mouse.y > this.y && this.y > this.size * 10) {
-                    this.y -= 5;
-                }
-            }
-
             this.x += this.directionX;
             this.y += this.directionY;
             this.draw();
