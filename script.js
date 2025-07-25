@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-
+    
     // Resize event listener
     window.addEventListener('resize', () => {
         canvas.width = innerWidth;
@@ -115,10 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // ==== CONTACT FORM SUBMISSION ====
+    // ==== CONTACT FORM VALIDATION ====
     const contactForm = document.getElementById('contact-form');
-    const submissionStatus = document.getElementById('submission-status');
-
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
@@ -127,41 +125,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const message = document.getElementById('message').value.trim();
 
         if (name === '' || email === '' || message === '') {
-            submissionStatus.textContent = 'Please fill in all fields.';
-            submissionStatus.style.color = 'red';
+            alert('Please fill in all fields.');
             return;
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            submissionStatus.textContent = 'Please enter a valid email address.';
-            submissionStatus.style.color = 'red';
+            alert('Please enter a valid email address.');
             return;
         }
-
-        const formData = new FormData(contactForm);
-        submissionStatus.textContent = 'Sending...';
-        submissionStatus.style.color = 'white';
-
-
-        fetch('https://script.google.com/macros/s/AKfycbzDnK3eLt07MudOIHr61Y3Y-CNNvfdH-3vA-Nn8ZnGBpOTl-JR4QGvQDeQh0id2775b/exec', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.result === 'success') {
-                submissionStatus.textContent = 'Message sent successfully! Thank you.';
-                submissionStatus.style.color = 'lightgreen';
-                contactForm.reset();
-            } else {
-                throw new Error(data.error || 'An unknown error occurred.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            submissionStatus.textContent = 'An error occurred. Please try again later.';
-            submissionStatus.style.color = 'red';
-        });
+        
+        alert('Thank you for your message! I will get back to you soon.');
+        contactForm.reset();
     });
 });
