@@ -96,6 +96,19 @@ a:hover {
     transition: color 0.3s ease;
 }
 
+/* Style for the external link icon */
+.nav-link .fa-arrow-up-right-from-square {
+    font-size: 0.7em;
+    margin-left: 4px;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link:hover .fa-arrow-up-right-from-square {
+    opacity: 1;
+}
+
+
 .nav-link:hover {
     color: var(--accent-color);
 }
