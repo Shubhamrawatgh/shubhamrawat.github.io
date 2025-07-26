@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shubham Rawat</title>
     
-    <!-- ===== FAVICON LINKS ===== -->
     <link rel="apple-touch-icon" sizes="180x180" href="Favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="Favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="Favicon/favicon-16x16.png">
@@ -19,156 +18,18 @@
 </head>
 <body>
 
-    <!-- ===== PRELOADER ===== -->
-    <div class="preloader">
+    <div id="preloader" class="preloader">
         <div id="lottie-animation"></div>
     </div>
 
-    <!-- ===== NAVIGATION ===== -->
-    <nav class="main-nav">
-        <div class="nav-container container">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#skills" class="nav-link">My Skills</a>
-            <a href="#projects" class="nav-link">My Work</a>
-            <a href="https://www.youtube.com/channel/UCivew3LK7mWwoZgtVZ1DcsA" class="nav-link" target="_blank" rel="noopener noreferrer">YouTube <i class="fas fa-arrow-up-right-from-square"></i></a>
-            <a href="https://drive.google.com/uc?export=download&id=1_kqy5GRMojP7V4anfhcSK_hMSxnn8fb2" class="nav-link" download>Get Resume</a>
-            <a href="#contact" class="nav-link">Contact</a>
-            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode">
-                <i class="fas fa-moon"></i>
-                <i class="fas fa-sun"></i>
-            </button>
-        </div>
-    </nav>
-
-    <!-- ===== PARTICLE BACKGROUND ===== -->
-    <canvas id="particle-canvas"></canvas>
-
-    <div class="container">
-        <!-- ===== HERO SECTION ===== -->
-        <header id="home" class="hero">
-            <div class="hero-content fade-in-section">
-                <h1>Hi, I'm Shubham Rawat</h1>
-                <p class="subtitle">A passionate <span id="typed-text"></span></p>
+    <div id="content-wrapper" style="display: none;">
+        <nav class="main-nav">
+            </nav>
+        <canvas id="particle-canvas"></canvas>
+        <div class="container">
             </div>
-        </header>
-
-        <main>
-            <!-- ===== SKILLS SECTION ===== -->
-            <section id="skills" class="skills-section fade-in-section">
-                <h2>My Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-tile">
-                        <i class="fas fa-code"></i>
-                        <h3>Full Stack Development</h3>
-                        <p>Building responsive, scalable, and efficient web applications from front-end to back-end with modern technologies.</p>
-                        <div class="tech-icons">
-                            <img src="assets/icons/html.svg" alt="HTML5 Logo" class="tech-logo" title="HTML5">
-                            <img src="assets/icons/css.svg" alt="CSS3 Logo" class="tech-logo" title="CSS3">
-                            <img src="assets/icons/javascript.svg" alt="JavaScript Logo" class="tech-logo" title="JavaScript">
-                            <img src="assets/icons/python.svg" alt="Python Logo" class="tech-logo" title="Python">
-                        </div>
-                        <div class="project-link-wrapper">
-                            <a href="development_projects.html" class="skill-project-btn">View Projects</a>
-                        </div>
-                    </div>
-
-                    <div class="skill-tile">
-                        <i class="fas fa-palette"></i>
-                        <h3>Creative Media & Design</h3>
-                        <p>Creating stunning visuals, from professional video editing and motion graphics to modern UI/UX design.</p>
-                        <div class="tech-icons">
-                            <img src="assets/icons/premierepro.svg" alt="Premiere Pro Logo" class="tech-logo" title="Adobe Premiere Pro">
-                            <img src="assets/icons/aftereffects.svg" alt="After Effects Logo" class="tech-logo" title="Adobe After Effects">
-                            <img src="assets/icons/photoshop.svg" alt="Photoshop Logo" class="tech-logo" title="Adobe Photoshop">
-                        </div>
-                         <div class="project-link-wrapper">
-                            <a href="creative_projects.html" class="skill-project-btn">View Projects</a>
-                        </div>
-                    </div>
-
-                    <div class="skill-tile">
-                        <i class="fas fa-brain"></i>
-                        <h3>AI & Generative Content</h3>
-                        <p>Leveraging cutting-edge AI for application development, automation, and producing stunning generative art and media.</p>
-                        <div class="tech-icons">
-                            <img src="assets/icons/chatgptlogo.svg" alt="OpenAI Logo" class="tech-logo" title="OpenAI">
-                            <img src="assets/icons/gemini.svg" alt="Google Gemini Logo" class="tech-logo" title="Google Gemini">
-                            <img src="assets/icons/Huggingface.svg" alt="Hugging Face Logo" class="tech-logo" title="Hugging Face">
-                        </div>
-                         <div class="project-link-wrapper">
-                            <a href="ai_projects.html" class="skill-project-btn">View Projects</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ===== PROJECTS SECTION ===== -->
-            <section id="projects" class="projects-section fade-in-section">
-                <h2>My Work</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <img src="https://placehold.co/600x400/0a0a10/00aaff?text=Project+Thumbnail" alt="Project 1 Thumbnail" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0a0a10/FFFFFF?text=Image+Not+Found';">
-                        <div class="project-content">
-                            <h3>E-Commerce Platform</h3>
-                            <p>A full-featured e-commerce site built with the MERN stack, including payment gateway integration and an admin dashboard.</p>
-                            <div class="project-tags">
-                                <span>React</span>
-                                <span>Node.js</span>
-                                <span>MongoDB</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="#" class="link-btn" target="_blank"><i class="fas fa-globe"></i> Live Demo</a>
-                                <a href="#" class="link-btn" target="_blank"><i class="fab fa-github"></i> View Code</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <img src="https://placehold.co/600x400/0a0a10/00aaff?text=Creative+Work" alt="Project 2 Thumbnail" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0a0a10/FFFFFF?text=Image+Not+Found';">
-                        <div class="project-content">
-                            <h3>Promotional Video</h3>
-                            <p>A dynamic promotional video edited in Premiere Pro with motion graphics created in After Effects to highlight a product launch.</p>
-                            <div class="project-tags">
-                                <span>Premiere Pro</span>
-                                <span>After Effects</span>
-                                <span>Video Editing</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="#" class="link-btn" target="_blank"><i class="fab fa-youtube"></i> Watch Video</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ===== CONTACT SECTION ===== -->
-            <section id="contact" class="contact-section fade-in-section">
-                <h2>Get In Touch</h2>
-                <form id="contact-form" class="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </section>
-        </main>
-
-        <!-- ===== FOOTER ===== -->
-        <footer class="fade-in-section">
-            <div class="social-links">
-                <a href="https://www.instagram.com/shubhamrawat.ai/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.youtube.com/channel/UCivew3LK7mWwoZgtVZ1DcsA" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
-                <a href="https://x.com/shubhamrawatyt" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://github.com/Shubhamrawatgh" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/shubham-rawat-593a81366/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-            </div>
-            <p>© 2025 Shubham Rawat. All Rights Reserved.</p>
-        </footer>
+        <footer>
+            </footer>
     </div>
 
     <script src="script.js"></script>
