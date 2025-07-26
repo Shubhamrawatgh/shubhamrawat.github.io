@@ -618,3 +618,37 @@ footer p {
         padding: 0.25rem;
     }
 }
+/* === Typed Gradient Animation === */
+.animated-gradient {
+  background: linear-gradient(90deg, #00aaff, #ff00ff, #00ffaa);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* === Icon Fade-in Animation === */
+.hidden-icons {
+  display: inline-flex;
+  gap: 0.5rem;
+  margin-left: 1rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.6s ease;
+}
+
+.hidden-icons.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-icon {
+  height: 32px;
+  width: 32px;
+}
