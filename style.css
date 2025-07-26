@@ -8,6 +8,7 @@
     --glass-bg: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
     --hero-gradient: linear-gradient(90deg, #fff, #aaa);
+    --typed-text-color: #00aaff;
 }
 
 [data-theme="light"] {
@@ -19,6 +20,7 @@
     --glass-bg: rgba(255, 255, 255, 0.7);
     --glass-border: rgba(0, 0, 0, 0.1);
     --hero-gradient: linear-gradient(90deg, #333, #555);
+    --typed-text-color: #007bff;
 }
 
 * {
@@ -83,51 +85,51 @@ a:hover {
 }
 
 
-/* ==== THEME SWITCH ==== */
-.theme-switch-wrapper {
+/* ==== GRADIENT TEXT FOR TYPED.JS ==== */
+.gradient-text {
+    background: linear-gradient(to right, #00aaff, #ff00ff, #00aaff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 2.5s linear infinite;
+}
+
+@keyframes shimmer {
+    to {
+        background-position: -200% center;
+    }
+}
+
+
+/* ==== THEME TOGGLE ICON ==== */
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    color: var(--primary-text-color);
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: color 0.3s ease, transform 0.3s ease;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
-.theme-switch {
-    display: inline-block;
-    height: 24px;
-    position: relative;
-    width: 50px;
+
+.theme-toggle-btn:hover {
+    color: var(--accent-color);
+    transform: scale(1.1);
 }
-.theme-switch input {
-    display:none;
+
+/* Hide sun icon in dark mode and moon in light mode */
+[data-theme="dark"] .theme-toggle-btn .fa-sun {
+    display: none;
 }
-.slider {
-    background-color: #ccc;
-    bottom: 0;
-    cursor: pointer;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: .4s;
-}
-.slider:before {
-    background-color: #fff;
-    bottom: 4px;
-    content: "";
-    height: 16px;
-    left: 4px;
-    position: absolute;
-    transition: .4s;
-    width: 16px;
-}
-input:checked + .slider {
-    background-color: var(--accent-color);
-}
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-.slider.round {
-    border-radius: 34px;
-}
-.slider.round:before {
-    border-radius: 50%;
+
+[data-theme="light"] .theme-toggle-btn .fa-moon {
+    display: none;
 }
 
 
@@ -149,7 +151,6 @@ input:checked + .slider:before {
     background: rgba(240, 242, 245, 0.75);
 }
 
-
 .nav-container {
     display: flex;
     justify-content: center;
@@ -167,7 +168,6 @@ input:checked + .slider:before {
     transition: color 0.3s ease;
 }
 
-/* Style for the external link icon */
 .nav-link .fa-arrow-up-right-from-square {
     font-size: 0.7em;
     margin-left: 4px;
@@ -178,7 +178,6 @@ input:checked + .slider:before {
 .nav-link:hover .fa-arrow-up-right-from-square {
     opacity: 1;
 }
-
 
 .nav-link:hover {
     color: var(--accent-color);
@@ -215,7 +214,7 @@ input:checked + .slider:before {
 
 /* ==== HEADER / HERO SECTION ==== */
 .hero {
-    min-height: 100vh; /* Changed to 100vh to better fill the screen */
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -236,18 +235,23 @@ input:checked + .slider:before {
     font-weight: 300;
 }
 
+#typed-text {
+    color: var(--typed-text-color);
+    font-weight: bold;
+}
+
 /* ==== GLASSMORPHISM CARD STYLE ==== */
-.glass-tile, .skill-tile, .contact-form {
+.glass-tile, .skill-tile, .contact-form, .project-card {
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
     border-radius: 15px;
     padding: 2rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.glass-tile:hover, .skill-tile:hover {
+.glass-tile:hover, .skill-tile:hover, .project-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 0 20px var(--accent-glow);
 }
@@ -269,7 +273,7 @@ input:checked + .slider:before {
     flex-direction: column;
 }
 
-.skill-tile > i { /* Main icon at the top */
+.skill-tile > i {
     font-size: 3rem;
     color: var(--accent-color);
     margin-bottom: 1rem;
@@ -284,7 +288,7 @@ input:checked + .slider:before {
 .skill-tile p {
     color: var(--secondary-text-color);
     font-size: 1rem;
-    flex-grow: 1; /* Allows button to be at bottom */
+    flex-grow: 1;
 }
 
 .tech-icons {
@@ -338,7 +342,6 @@ input:checked + .slider:before {
     color: #fff;
 }
 
-
 /* ==== PROJECTS SECTION & NEW PROJECT PAGES ==== */
 .projects-section, .projects-page {
     padding: 4rem 0;
@@ -382,12 +385,10 @@ input:checked + .slider:before {
     color: #fff;
 }
 
-
 .back-to-home i {
     font-size: 1rem;
     margin-right: 0.5rem;
 }
-
 
 .projects-grid {
     display: grid;
@@ -396,18 +397,10 @@ input:checked + .slider:before {
 }
 
 .project-card {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 15px;
+    padding: 0; /* Override padding for cards with images */
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 25px var(--accent-glow);
 }
 
 .project-card img {
@@ -517,7 +510,6 @@ input:checked + .slider:before {
     background: rgba(255,255,255,0.8);
 }
 
-
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
     color: var(--secondary-text-color);
@@ -571,17 +563,6 @@ footer {
     text-shadow: 0 0 10px var(--accent-glow);
 }
 
-.social-icon-svg {
-    height: 1.8rem; /* Match the font-size of other icons */
-    width: 1.8rem;  /* Match the font-size of other icons */
-    fill: currentColor;
-    transition: filter 0.3s ease;
-}
-
-.social-links a:hover .social-icon-svg {
-    filter: drop-shadow(0 0 8px var(--accent-glow));
-}
-
 footer p {
     margin-top: 1rem;
     font-size: 0.9rem;
@@ -590,7 +571,7 @@ footer p {
 
 /* ==== RESPONSIVE DESIGN ==== */
 @media (max-width: 768px) {
-    h1 {
+    .hero-content h1 {
         font-size: 2.8rem;
     }
     .hero .subtitle {
