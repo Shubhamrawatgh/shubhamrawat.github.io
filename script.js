@@ -1,21 +1,45 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // ==== PRELOADER LOGIC ====
+    const preloader = document.querySelector('.preloader');
+    const lottieContainer = document.getElementById('lottie-animation');
+
+    if (preloader && lottieContainer) {
+        // Load the Lottie animation
+        const animation = lottie.loadAnimation({
+            container: lottieContainer, // the DOM element
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'https://lottie.host/80b72183-5091-49ae-9937-2938a14b5f4c/5qQK0y5uit.json' // URL to your animation
+        });
+
+        // Hide the preloader when the page content is fully loaded
+        window.addEventListener('load', () => {
+            preloader.classList.add('fade-out');
+            
+            // Remove the preloader from the DOM after the fade-out transition
+            preloader.addEventListener('transitionend', () => {
+                preloader.style.display = 'none';
+            });
+        });
+    }
+
+
     // ==== THEME TOGGLE LOGIC ====
     const themeToggle = document.getElementById('theme-toggle');
     const docElement = document.documentElement;
 
-    // Apply saved theme on initial load, defaulting to 'dark'
     const currentTheme = localStorage.getItem('theme') || 'dark';
     docElement.setAttribute('data-theme', currentTheme);
 
-    // Listen for a click on the theme toggle button
-    themeToggle.addEventListener('click', () => {
-        // Toggle the data-theme attribute
-        const newTheme = docElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        docElement.setAttribute('data-theme', newTheme);
-        // Save the new theme to localStorage
-        localStorage.setItem('theme', newTheme);
-    });
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const newTheme = docElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            docElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    }
 
 
     // ==== TYPED.JS INITIALIZATION WITH GRADIENT EFFECT ====
@@ -23,20 +47,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typedTextSpan) {
         new Typed('#typed-text', {
             strings: ['Full Stack Developer', 'Creative Professional', 'AI Enthusiast'],
-            typeSpeed: 60,  // Updated speed
-            backSpeed: 40,  // Updated speed
+            typeSpeed: 60,
+            backSpeed: 40,
             backDelay: 2000,
             loop: true,
-            // Callback when a string is fully typed
             onStringTyped: function(arrayPos, self) {
-                // Check if the current string is "AI Enthusiast" (index 2)
                 if (arrayPos === 2) {
                     typedTextSpan.classList.add('gradient-text');
                 }
             },
-            // Callback before a new string is typed
             preStringTyped: function(arrayPos, self) {
-                // Always remove the class to reset the style
                 typedTextSpan.classList.remove('gradient-text');
             }
         });
@@ -132,8 +152,9 @@ document.addEventListener('DOMContentLoaded', () => {
             init();
         });
         
-        // Re-initialize particles when theme changes
-        themeToggle.addEventListener('click', init);
+        if (themeToggle) {
+            themeToggle.addEventListener('click', init);
+        }
 
         init();
         animate();
@@ -164,9 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            // This is a placeholder for form submission logic.
-            // In a real application, you would send this data to a server.
-            alert('Thank you for your message! (Form submission is for demo purposes only)');
+            alert('Thank you for your message! (This is a demo form)');
             contactForm.reset();
         });
     }
