@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (currentTheme) {
         document.documentElement.setAttribute('data-theme', currentTheme);
+
         if (currentTheme === 'light') {
             themeSwitch.checked = true;
         }
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let particlesArray;
 
+        // Particle class
         class Particle {
             constructor(x, y, directionX, directionY, size, color) {
                 this.x = x;
@@ -43,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.color = color;
             }
 
+            // Method to draw individual particle
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
@@ -50,15 +53,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.fill();
             }
 
+            // Method to update particle's position
             update() {
-                if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
-                if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
+                if (this.x > canvas.width || this.x < 0) {
+                    this.directionX = -this.directionX;
+                }
+                if (this.y > canvas.height || this.y < 0) {
+                    this.directionY = -this.directionY;
+                }
                 this.x += this.directionX;
                 this.y += this.directionY;
                 this.draw();
             }
         }
 
+        // Function to create particles
         function init() {
             particlesArray = [];
             let numberOfParticles = (canvas.height * canvas.width) / 9000;
@@ -73,22 +82,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // Animation loop
         function animate() {
             requestAnimationFrame(animate);
             ctx.clearRect(0, 0, innerWidth, innerHeight);
+
             for (let i = 0; i < particlesArray.length; i++) {
                 particlesArray[i].update();
             }
             connect();
         }
 
+        // Function to draw lines between particles
         function connect() {
             let opacityValue = 1;
             for (let a = 0; a < particlesArray.length; a++) {
                 for (let b = a; b < particlesArray.length; b++) {
-                    let dx = particlesArray[a].x - particlesArray[b].x;
-                    let dy = particlesArray[a].y - particlesArray[b].y;
-                    let distance = dx * dx + dy * dy;
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
+                        ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
                     if (distance < (canvas.width / 7) * (canvas.height / 7)) {
                         opacityValue = 1 - (distance / 20000);
                         ctx.strokeStyle = `rgba(0, 170, 255, ${opacityValue})`;
@@ -101,7 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
-
+        
+        // Resize event listener
         window.addEventListener('resize', () => {
             canvas.width = innerWidth;
             canvas.height = innerHeight;
@@ -113,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // ==== TYPED.JS WITH CUSTOM ANIMATIONS ====
+    // ✨ ==== TYPED.JS INITIALIZATION ====
     const typedTextSpan = document.getElementById('typed-text');
     if (typedTextSpan) {
         new Typed('#typed-text', {
@@ -121,25 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
             typeSpeed: 70,
             backSpeed: 50,
             backDelay: 2000,
-            loop: true,
-            onStringTyped: (arrayPos, self) => {
-                const wrapper = document.getElementById('typed-wrapper');
-                const iconWrapper = document.getElementById('icon-animation');
-
-                // Reset styles
-                if (wrapper) wrapper.classList.remove('animated-gradient');
-                if (iconWrapper) iconWrapper.classList.remove('visible');
-
-                const typedStr = self.strings[arrayPos];
-
-                if (typedStr === "AI Enthusiast" && wrapper) {
-                    wrapper.classList.add('animated-gradient');
-                }
-
-                if (typedStr === "Creative Professional" && iconWrapper) {
-                    iconWrapper.classList.add('visible');
-                }
-            }
+            loop: true
         });
     }
 
@@ -183,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Please enter a valid email address.');
                 return;
             }
-
+            
             alert('Thank you for your message! I will get back to you soon.');
             contactForm.reset();
         });
