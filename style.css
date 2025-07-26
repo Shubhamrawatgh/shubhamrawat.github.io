@@ -20,6 +20,16 @@ body {
     overflow-x: hidden;
 }
 
+/* Particle Canvas Styling */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1; /* This is key to place it behind other content */
+}
+
 .container {
     width: 90%;
     max-width: 1200px;
