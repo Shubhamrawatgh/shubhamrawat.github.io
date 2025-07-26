@@ -1,28 +1,46 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ==== THEME SWITCHER ====
-    const themeSwitch = document.querySelector('#checkbox');
-    const currentTheme = localStorage.getItem('theme');
+    // ==== THEME TOGGLE LOGIC ====
+    const themeToggle = document.getElementById('theme-toggle');
+    const docElement = document.documentElement;
 
-    if (currentTheme) {
-        document.documentElement.setAttribute('data-theme', currentTheme);
+    // Apply saved theme on initial load, defaulting to 'dark'
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    docElement.setAttribute('data-theme', currentTheme);
 
-        if (currentTheme === 'light') {
-            themeSwitch.checked = true;
-        }
+    // Listen for a click on the theme toggle button
+    themeToggle.addEventListener('click', () => {
+        // Toggle the data-theme attribute
+        const newTheme = docElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        docElement.setAttribute('data-theme', newTheme);
+        // Save the new theme to localStorage
+        localStorage.setItem('theme', newTheme);
+    });
+
+
+    // ==== TYPED.JS INITIALIZATION WITH GRADIENT EFFECT ====
+    const typedTextSpan = document.getElementById('typed-text');
+    if (typedTextSpan) {
+        new Typed('#typed-text', {
+            strings: ['Full Stack Developer', 'Creative Professional', 'AI Enthusiast'],
+            typeSpeed: 60,  // Updated speed
+            backSpeed: 40,  // Updated speed
+            backDelay: 2000,
+            loop: true,
+            // Callback when a string is fully typed
+            onStringTyped: function(arrayPos, self) {
+                // Check if the current string is "AI Enthusiast" (index 2)
+                if (arrayPos === 2) {
+                    typedTextSpan.classList.add('gradient-text');
+                }
+            },
+            // Callback before a new string is typed
+            preStringTyped: function(arrayPos, self) {
+                // Always remove the class to reset the style
+                typedTextSpan.classList.remove('gradient-text');
+            }
+        });
     }
-
-    function switchTheme(e) {
-        if (e.target.checked) {
-            document.documentElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-        } else {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-        }
-    }
-
-    themeSwitch.addEventListener('change', switchTheme, false);
 
 
     // ==== PARTICLE BACKGROUND ANIMATION ====
@@ -34,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let particlesArray;
 
-        // Particle class
         class Particle {
             constructor(x, y, directionX, directionY, size, color) {
                 this.x = x;
@@ -45,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.color = color;
             }
 
-            // Method to draw individual particle
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
@@ -53,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.fill();
             }
 
-            // Method to update particle's position
             update() {
                 if (this.x > canvas.width || this.x < 0) {
                     this.directionX = -this.directionX;
@@ -67,9 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Function to create particles
         function init() {
             particlesArray = [];
+            let themeColor = document.documentElement.getAttribute('data-theme') === 'light' ? 'rgba(0, 123, 255, 0.5)' : 'rgba(0, 170, 255, 0.5)';
             let numberOfParticles = (canvas.height * canvas.width) / 9000;
             for (let i = 0; i < numberOfParticles; i++) {
                 let size = (Math.random() * 2) + 1;
@@ -77,12 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
                 let directionX = (Math.random() * .4) - .2;
                 let directionY = (Math.random() * .4) - .2;
-                let color = 'rgba(0, 170, 255, 0.5)';
-                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, themeColor));
             }
         }
 
-        // Animation loop
         function animate() {
             requestAnimationFrame(animate);
             ctx.clearRect(0, 0, innerWidth, innerHeight);
@@ -93,16 +106,16 @@ document.addEventListener('DOMContentLoaded', () => {
             connect();
         }
 
-        // Function to draw lines between particles
         function connect() {
             let opacityValue = 1;
+            let themeColor = document.documentElement.getAttribute('data-theme') === 'light' ? '0, 123, 255' : '0, 170, 255';
             for (let a = 0; a < particlesArray.length; a++) {
                 for (let b = a; b < particlesArray.length; b++) {
                     let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
                         ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
                     if (distance < (canvas.width / 7) * (canvas.height / 7)) {
                         opacityValue = 1 - (distance / 20000);
-                        ctx.strokeStyle = `rgba(0, 170, 255, ${opacityValue})`;
+                        ctx.strokeStyle = `rgba(${themeColor}, ${opacityValue})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
                         ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -113,28 +126,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         
-        // Resize event listener
         window.addEventListener('resize', () => {
             canvas.width = innerWidth;
             canvas.height = innerHeight;
             init();
         });
+        
+        // Re-initialize particles when theme changes
+        themeToggle.addEventListener('click', init);
 
         init();
         animate();
-    }
-
-
-    // ✨ ==== TYPED.JS INITIALIZATION ====
-    const typedTextSpan = document.getElementById('typed-text');
-    if (typedTextSpan) {
-        new Typed('#typed-text', {
-            strings: ['Full Stack Developer', 'Creative Professional', 'AI Enthusiast'],
-            typeSpeed: 70,
-            backSpeed: 50,
-            backDelay: 2000,
-            loop: true
-        });
     }
 
 
@@ -162,23 +164,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
-
-            if (name === '' || email === '' || message === '') {
-                alert('Please fill in all fields.');
-                return;
-            }
-
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-            
-            alert('Thank you for your message! I will get back to you soon.');
+            // This is a placeholder for form submission logic.
+            // In a real application, you would send this data to a server.
+            alert('Thank you for your message! (Form submission is for demo purposes only)');
             contactForm.reset();
         });
     }
