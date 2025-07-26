@@ -184,6 +184,8 @@ a:hover {
 /* ==== SKILLS SECTION ==== */
 .skills-section {
     padding: 4rem 0;
+    position: relative;
+    background-color: var(--bg-color);
 }
 
 .skills-grid {
@@ -266,6 +268,11 @@ a:hover {
 /* ==== PROJECTS SECTION & NEW PROJECT PAGES ==== */
 .projects-section, .projects-page {
     padding: 4rem 0;
+}
+
+.projects-section {
+    position: relative;
+    background-color: var(--bg-color);
 }
 
 .projects-page-header {
