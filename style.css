@@ -31,7 +31,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px; /* Offset for the fixed header */
+    scroll-padding-top: 80px;
 }
 
 body {
@@ -84,8 +84,6 @@ a:hover {
     color: #000;
 }
 
-
-/* ==== GRADIENT TEXT FOR TYPED.JS ==== */
 .gradient-text {
     background: linear-gradient(to right, #00aaff, #ff00ff, #00aaff);
     background-size: 200% auto;
@@ -100,8 +98,6 @@ a:hover {
     }
 }
 
-
-/* ==== THEME TOGGLE ICON ==== */
 .theme-toggle-btn {
     background: none;
     border: none;
@@ -123,7 +119,6 @@ a:hover {
     transform: scale(1.1);
 }
 
-/* Hide sun icon in dark mode and moon in light mode */
 [data-theme="dark"] .theme-toggle-btn .fa-sun {
     display: none;
 }
@@ -132,8 +127,6 @@ a:hover {
     display: none;
 }
 
-
-/* ==== NAVIGATION HEADER ==== */
 .main-nav {
     position: fixed;
     top: 0;
@@ -199,8 +192,6 @@ a:hover {
     width: 100%;
 }
 
-
-/* ==== FADE-IN ANIMATION ==== */
 .fade-in-section {
     opacity: 0;
     transform: translateY(20px);
@@ -212,7 +203,6 @@ a:hover {
     transform: translateY(0);
 }
 
-/* ==== HEADER / HERO SECTION ==== */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -240,7 +230,6 @@ a:hover {
     font-weight: bold;
 }
 
-/* ==== GLASSMORPHISM CARD STYLE ==== */
 .glass-tile, .skill-tile, .contact-form, .project-card {
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
@@ -256,7 +245,6 @@ a:hover {
     box-shadow: 0 0 20px var(--accent-glow);
 }
 
-/* ==== SKILLS SECTION ==== */
 .skills-section {
     padding: 4rem 0;
 }
@@ -342,7 +330,6 @@ a:hover {
     color: #fff;
 }
 
-/* ==== PROJECTS SECTION & NEW PROJECT PAGES ==== */
 .projects-section, .projects-page {
     padding: 4rem 0;
 }
@@ -397,7 +384,7 @@ a:hover {
 }
 
 .project-card {
-    padding: 0; /* Override padding for cards with images */
+    padding: 0;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -478,7 +465,6 @@ a:hover {
     margin-right: 0.5rem;
 }
 
-/* ==== CONTACT SECTION ==== */
 .contact-section {
     padding: 4rem 0;
 }
@@ -541,7 +527,6 @@ a:hover {
     transform: scale(1.02);
 }
 
-/* ==== FOOTER SECTION ==== */
 footer {
     text-align: center;
     padding: 2rem 0;
@@ -569,7 +554,6 @@ footer p {
     color: var(--secondary-text-color);
 }
 
-/* ==== RESPONSIVE DESIGN ==== */
 @media (max-width: 768px) {
     .hero-content h1 {
         font-size: 2.8rem;
@@ -598,4 +582,29 @@ footer p {
         font-size: 0.9rem;
         padding: 0.25rem;
     }
+}
+
+/* ==== PRELOADER STYLES ==== */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color); /* Matches your theme background */
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.75s ease; /* Smooth fade-out */
+    pointer-events: none; /* Allows clicks to pass through after fade */
+}
+
+.preloader.fade-out {
+    opacity: 0;
+}
+
+#lottie-animation {
+    width: 250px;
+    height: 250px;
 }
