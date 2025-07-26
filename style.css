@@ -27,7 +27,7 @@ body {
     height: 100%;
     top: 0;
     left: 0;
-    z-index: -1; /* This is key to place it behind other content */
+    z-index: -1;
 }
 
 .container {
@@ -35,6 +35,8 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    position: relative;
+    z-index: 1;
 }
 
 /* Header and Navigation */
@@ -250,6 +252,7 @@ h2.section-title::after {
 .skills-list img {
     width: 40px;
     height: 40px;
+    filter: drop-shadow(0 0 5px var(--primary-color));
     transition: transform 0.3s ease;
 }
 
@@ -333,6 +336,7 @@ h2.section-title::after {
 .project-card .project-tech-icons img {
     width: 30px;
     height: 30px;
+    filter: drop-shadow(0 0 3px var(--secondary-color));
     transition: transform 0.3s ease;
 }
 
