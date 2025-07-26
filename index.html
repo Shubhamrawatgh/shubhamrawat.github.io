@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,46 +7,31 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-    <style>
-        .hero-content h1 {
-            font-size: 5rem; /* Bigger */
-            font-weight: 700; /* Bolder */
-            color: #00aaff; /* Colored */
-        }
-
-        .hero .subtitle {
-            font-size: 2rem; /* Bigger */
-            font-weight: 500; /* Bolder */
-        }
-
-        #typed-text {
-            color: #00aaff; /* Colored */
-            font-weight: bold; /* Bold */
-        }
-    </style>
 </head>
 <body>
 
-   <nav class="main-nav">
-    <div class="nav-container container">
-        <a href="#home" class="nav-link">Home</a>
-        <a href="#skills" class="nav-link">My Skills</a>
-        <a href="#projects" class="nav-link">My Work</a>
-        <a href="https://www.youtube.com/channel/UCivew3LK7mWwoZgtVZ1DcsA" class="nav-link" target="_blank" rel="noopener noreferrer">YouTube <i class="fas fa-arrow-up-right-from-square"></i></a>
-        <a href="https://drive.google.com/uc?export=download&id=1_kqy5GRMojP7V4anfhcSK_hMSxnn8fb2" class="nav-link" download>Get Resume</a>
-        <a href="#contact" class="nav-link">Contact</a>
-        <div class="theme-switch-wrapper">
-            <label class="theme-switch" for="checkbox">
-                <input type="checkbox" id="checkbox" />
-                <div class="slider round"></div>
-            </label>
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="main-nav">
+        <div class="nav-container container">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#skills" class="nav-link">My Skills</a>
+            <a href="#projects" class="nav-link">My Work</a>
+            <a href="https://www.youtube.com/channel/UCivew3LK7mWwoZgtVZ1DcsA" class="nav-link" target="_blank" rel="noopener noreferrer">YouTube <i class="fas fa-arrow-up-right-from-square"></i></a>
+            <a href="https://drive.google.com/uc?export=download&id=1_kqy5GRMojP7V4anfhcSK_hMSxnn8fb2" class="nav-link" download>Get Resume</a>
+            <a href="#contact" class="nav-link">Contact</a>
+            <!-- ==== THEME TOGGLE ICON ==== -->
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+            </button>
         </div>
-    </div>
-</nav>
+    </nav>
 
+    <!-- ===== PARTICLE BACKGROUND ===== -->
     <canvas id="particle-canvas"></canvas>
 
     <div class="container">
+        <!-- ===== HERO SECTION ===== -->
         <header id="home" class="hero">
             <div class="hero-content fade-in-section">
                 <h1>Hi, I'm Shubham Rawat</h1>
@@ -55,6 +40,7 @@
         </header>
 
         <main>
+            <!-- ===== SKILLS SECTION ===== -->
             <section id="skills" class="skills-section fade-in-section">
                 <h2>My Skills</h2>
                 <div class="skills-grid">
@@ -63,10 +49,10 @@
                         <h3>Full Stack Development</h3>
                         <p>Building responsive, scalable, and efficient web applications from front-end to back-end with modern technologies.</p>
                         <div class="tech-icons">
-                            <img src="assets/icons/html.svg" alt="HTML5 Logo" class="tech-logo" title="HTML5">
-                            <img src="assets/icons/css.svg" alt="CSS3 Logo" class="tech-logo" title="CSS3">
-                            <img src="assets/icons/javascript.svg" alt="JavaScript Logo" class="tech-logo" title="JavaScript">
-                            <img src="assets/icons/python.svg" alt="Python Logo" class="tech-logo" title="Python">
+                            <img src="https://placehold.co/40x40/ffffff/000000?text=HTML" alt="HTML5 Logo" class="tech-logo" title="HTML5">
+                            <img src="https://placehold.co/40x40/ffffff/000000?text=CSS" alt="CSS3 Logo" class="tech-logo" title="CSS3">
+                            <img src="https://placehold.co/40x40/ffffff/000000?text=JS" alt="JavaScript Logo" class="tech-logo" title="JavaScript">
+                            <img src="https://placehold.co/40x40/ffffff/000000?text=PY" alt="Python Logo" class="tech-logo" title="Python">
                         </div>
                         <div class="project-link-wrapper">
                             <a href="development_projects.html" class="skill-project-btn">View Projects</a>
@@ -78,9 +64,9 @@
                         <h3>Creative Media & Design</h3>
                         <p>Creating stunning visuals, from professional video editing and motion graphics to modern UI/UX design.</p>
                         <div class="tech-icons">
-                            <img src="assets/icons/premierepro.svg" alt="Premiere Pro Logo" class="tech-logo" title="Adobe Premiere Pro">
-                            <img src="assets/icons/aftereffects.svg" alt="After Effects Logo" class="tech-logo" title="Adobe After Effects">
-                            <img src="assets/icons/photoshop.svg" alt="Photoshop Logo" class="tech-logo" title="Adobe Photoshop">
+                            <img src="https://placehold.co/40x40/ffffff/000000?text=PR" alt="Premiere Pro Logo" class="tech-logo" title="Adobe Premiere Pro">
+                            <img src="https://placehold.co/40x40/ffffff/000000?text=AE" alt="After Effects Logo" class="tech-logo" title="Adobe After Effects">
+                            <img src="https://placehold.co/40x40/ffffff/000000?text=PS" alt="Photoshop Logo" class="tech-logo" title="Adobe Photoshop">
                         </div>
                          <div class="project-link-wrapper">
                             <a href="creative_projects.html" class="skill-project-btn">View Projects</a>
@@ -92,9 +78,9 @@
                         <h3>AI & Generative Content</h3>
                         <p>Leveraging cutting-edge AI for application development, automation, and producing stunning generative art and media.</p>
                         <div class="tech-icons">
-                            <img src="assets/icons/chatgptlogo.svg" alt="OpenAI Logo" class="tech-logo" title="OpenAI">
-                            <img src="assets/icons/gemini.svg" alt="Google Gemini Logo" class="tech-logo" title="Google Gemini">
-                            <img src="assets/icons/Huggingface.svg" alt="Hugging Face Logo" class="tech-logo" title="Hugging Face">
+                            <img src="https://placehold.co/40x40/ffffff/000000?text=AI" alt="OpenAI Logo" class="tech-logo" title="OpenAI">
+                            <img src="https://placehold.co/40x40/ffffff/000000?text=G" alt="Google Gemini Logo" class="tech-logo" title="Google Gemini">
+                            <img src="https://placehold.co/40x40/ffffff/000000?text=HF" alt="Hugging Face Logo" class="tech-logo" title="Hugging Face">
                         </div>
                          <div class="project-link-wrapper">
                             <a href="ai_projects.html" class="skill-project-btn">View Projects</a>
@@ -103,6 +89,7 @@
                 </div>
             </section>
 
+            <!-- ===== PROJECTS SECTION ===== -->
             <section id="projects" class="projects-section fade-in-section">
                 <h2>My Work</h2>
                 <div class="projects-grid">
@@ -140,6 +127,7 @@
                 </div>
             </section>
 
+            <!-- ===== CONTACT SECTION ===== -->
             <section id="contact" class="contact-section fade-in-section">
                 <h2>Get In Touch</h2>
                 <form id="contact-form" class="contact-form">
@@ -157,6 +145,7 @@
             </section>
         </main>
 
+        <!-- ===== FOOTER ===== -->
         <footer class="fade-in-section">
             <div class="social-links">
                 <a href="https://www.instagram.com/shubhamrawat.ai/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
@@ -164,9 +153,6 @@
                 <a href="https://x.com/shubhamrawatyt" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
                 <a href="https://github.com/Shubhamrawatgh" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/shubham-rawat-593a81366/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                <a href="https://huggingface.co/shubhamrawat" aria-label="Hugging Face" target="_blank" rel="noopener noreferrer">
-                    <img src="assets/icons/huggingfacebw.svg" alt="Hugging Face" class="social-icon-svg">
-                </a>
             </div>
             <p>© 2025 Shubham Rawat. All Rights Reserved.</p>
         </footer>
